@@ -1,4 +1,4 @@
-package com.example.uneedvhelp;
+package com.company.uneedvhelp;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

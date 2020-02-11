@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">uNeedvHelp</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
