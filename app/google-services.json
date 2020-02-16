@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579469293428",
+    "firebase_url": "https://uneedvhelp.firebaseio.com",
+    "project_id": "uneedvhelp",
+    "storage_bucket": "uneedvhelp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579469293428:android:b34c6a110da828dea85e21",
+        "android_client_info": {
+          "package_name": "com.company.uNeedvHelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579469293428-r5k2r8e414upnekeeaphvabutr6n69bp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.uNeedvHelp",
+            "certificate_hash": "ef4196dafc3a07c56e09d1574c67cfbb7720b36a"
+          }
+        },
+        {
+          "client_id": "579469293428-m0h1siqekqd5557fsc3i3u8pm72rb0vf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAno5-pgkJwRez_BJpr9cE_JygHBtEeUt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579469293428-m0h1siqekqd5557fsc3i3u8pm72rb0vf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
