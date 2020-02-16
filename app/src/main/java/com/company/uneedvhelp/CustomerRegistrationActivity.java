@@ -58,43 +58,49 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 String confirmPassword = mConfirmPassword.getText().toString();
                 String phone = mPhone.getText().toString().trim();
 
+                boolean validation = true;
+
                 if(TextUtils.isEmpty(firstName)){
                     mFirstName.setError("First Name is Required");
-                    return;
+                    validation = false;
                 }
 
                 if(TextUtils.isEmpty(lastName)){
                     mLastName.setError("Last Name is Required");
-                    return;
+                    validation = false;
                 }
 
                 if(TextUtils.isEmpty(phone)){
                     mPhone.setError("Phone Number is Required");
-                    return;
+                    validation = false;
                 }
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required");
-                    return;
+                    validation = false;
                 }
 
                 if(TextUtils.isEmpty(password)){
                     mPassword.setError("Please Enter Your Password");
-                    return;
+                    validation = false;
                 }
 
                 if(TextUtils.isEmpty(confirmPassword)){
                     mConfirmPassword.setError("Please Enter Confirm Password");
-                    return;
+                    validation = false;
                 }
 
                 if(password.length() < 6){
                     mPassword.setError("Password must be longer than 6 characters");
-                    return;
+                    validation = false;
                 }
 
                 if(!password.equals(confirmPassword)){
                     mConfirmPassword.setError("Your Confirm Password does not match");
+                    validation = false;
+                }
+
+                if(!validation){
                     return;
                 }
 
