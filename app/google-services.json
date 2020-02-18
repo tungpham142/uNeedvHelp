@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "370527830313",
+    "firebase_url": "https://fir-demoapp-a331e.firebaseio.com",
+    "project_id": "fir-demoapp-a331e",
+    "storage_bucket": "fir-demoapp-a331e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370527830313:android:635430d125b9156e",
+        "android_client_info": {
+          "package_name": "com.example.d15z.firebasedemoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370527830313-gerrtl9bsb1n2m7go7d885p7nlht02ft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.d15z.firebasedemoapp",
+            "certificate_hash": "96fe0932b9c393a41276498861529ab4ce3e34f4"
+          }
+        },
+        {
+          "client_id": "370527830313-7jifu4div4cetaurrf25cjmmqt1qlkv7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.d15z.firebasedemoapp",
+            "certificate_hash": "a66a2946296ad25766b2d3f5099822236838d39f"
+          }
+        },
+        {
+          "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2J7yw9m3ZhXAftKVn_pStjoW1kin87uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370527830313:android:a0a069db975433fffb3738",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370527830313-5h8dc7smf0ct17f0lj322avpujiu61tn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "96fe0932b9c393a41276498861529ab4ce3e34f4"
+          }
+        },
+        {
+          "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2J7yw9m3ZhXAftKVn_pStjoW1kin87uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370527830313:android:4c387a7eaf40f884fb3738",
+        "android_client_info": {
+          "package_name": "com.example.uneedvhelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370527830313-gijillbf49rc2puv67s0tiq0m4iesbes.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uneedvhelp",
+            "certificate_hash": "96fe0932b9c393a41276498861529ab4ce3e34f4"
+          }
+        },
+        {
+          "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2J7yw9m3ZhXAftKVn_pStjoW1kin87uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370527830313-q9cgv0m8k2fb5hpirtaceh506fb7fs0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
