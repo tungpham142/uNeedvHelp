@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="26dp"
+        tools:context=".VendorRegistrationForm2Activity">
+
+        <!--//SSN and Hourly Rate-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/edt_ssn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/hintColor"
+                android:hint="SSN"
+                android:padding="10dp"></EditText>
+
+            <EditText
+                android:id="@+id/edt_hourly_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/hintColor"
+                android:hint="Hourly Rate"
+                android:padding="10dp"></EditText>
+
+        </LinearLayout>
+        <!--    Appliances, Electical Plumbing-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/check_applicance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Applicances ">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/check_electirc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Electrical"></CheckBox>
+
+            <CheckBox
+                android:id="@+id/check_plumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Plumbing"></CheckBox>
+
+
+        </LinearLayout>
+        <!-- //Home Cleaning Tutoring-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/check_home_clean"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Home Cleaning ">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/check_tutor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Tutoring"></CheckBox>
+
+
+        </LinearLayout>
+
+        <!--/Packaging and Moving, Home Repair and Painting-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/check_pack_move"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Packaging and Moving ">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/check_home_paint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Home Repair and Painting"></CheckBox>
+
+
+        </LinearLayout>
+        <!--//Pest Control,Computer Repair-->
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/check_pest_ctrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Pest Control ">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/check_comp_repair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Computer Repair"></CheckBox>
+
+
+        </LinearLayout>
+
+        <!--20% commission condition-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/check_i_agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="I Agree to pay 20% Commission to the application"
+                android:textColor="@color/colorAccent"></CheckBox>
+
+
+        </LinearLayout>
+
+        <!-- //Register Button and Back-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/buttonColor"
+                android:text="Back"></Button>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@color/buttonColor"
+                android:text="Register"></Button>
+
+
+        </LinearLayout>
+        <!-- //Login Link-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="@string/already_registered"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_here"></TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

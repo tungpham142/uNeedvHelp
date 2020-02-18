@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">uNeedvHelp</string>
+    <string name="not_registered">Not Registered?</string>
+    <string name="forgot_password">Forgot Password??</string>
+    <string name="register_here">Register Here...</string>
+    <string name="already_registered">Already Registered?</string>
+    <string name="login_here">Login Here...</string>
+    <string name="vendor_login">Vendor Login</string>
+    <string name="vendor_registration">Vendor Registration</string>
+</resources>
