@@ -113,7 +113,7 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
 
 
         // setting list adapter
-        expListView.setAdapter(listAdapter);
+        //expListView.setAdapter(listAdapter);
 
         //next button will redirect to other part of the registration form
         btnNext = (Button) findViewById(R.id.btn_next);

@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.widget.EditText;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Pattern;
 
 
 public class VendorRegistrationForm2Activity extends AppCompatActivity implements View.OnClickListener {
