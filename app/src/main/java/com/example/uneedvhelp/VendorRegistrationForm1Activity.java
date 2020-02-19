@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.util.Log;
 
 public class VendorRegistrationForm1Activity extends AppCompatActivity {
     //regex for email
@@ -182,9 +183,11 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
                 boolean mBool = false;
                 if(mobileValue.equals("")){
                     phone.setError("Fill this field");
+
                 }
                 else{
                     mBool=checkMobile(mobileValue);
+                    Log.w("MainActivity:Mobile",mobileValue);
                     if(mBool==false){
                         phone.setError("Please type a 10 digit phone number");
                     }
@@ -239,6 +242,7 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
                     intent.putExtra("zip",zipValue);
                     intent.putExtra("state",stateValue);
                     intent.putExtra("city",cityValue);
+                    intent.putExtra("dob",getStringValue(dob));
                     startActivity(intent);
                 }
                 else{

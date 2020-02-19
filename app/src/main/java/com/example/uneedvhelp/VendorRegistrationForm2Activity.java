@@ -104,7 +104,7 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity implement
 
                     myRef.child(strKey).setValue(dataModel);
 
-                    Intent i = new Intent(VendorRegistrationForm2Activity.this, VendorHomeActivity.class);
+                    Intent i = new Intent(VendorRegistrationForm2Activity.this, VendorLoginActivity.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(VendorRegistrationForm2Activity.this, "Please check I agree to the terms if you want to Register", Toast.LENGTH_SHORT).show();
