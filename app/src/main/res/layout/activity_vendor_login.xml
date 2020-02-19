@@ -13,7 +13,11 @@
         android:padding="30dp"
         tools:context=".VendorLoginActivity">
 
-
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_marginLeft="24dp"
+            android:src="@drawable/ic_wrench"></ImageView>
         //Vendor Login Title
 
         <LinearLayout
@@ -25,7 +29,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Vendor Registration"></TextView>
+                android:text="Vendor Login"
+                android:textSize="15pt"></TextView>
         </LinearLayout>
 
 
@@ -108,9 +113,12 @@
                 android:text="@string/not_registered"></TextView>
 
             <TextView
+                android:id="@+id/start_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/register_here"></TextView>
+                android:text="@string/register_here"
+                android:onClick="onClick"
+                android:clickable="true"></TextView>
 
         </LinearLayout>
 

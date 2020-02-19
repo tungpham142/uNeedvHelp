@@ -32,7 +32,8 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_registration_form2);
-
+        ssn = findViewById(R.id.edt_ssn);
+        rate = findViewById(R.id.edt_hourly_rate);
 
 
         //20% commission condition
@@ -56,7 +57,31 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity implement
                 break;
             case R.id.btn_register:
                 //Validation for Agree checkbox condition
-                if (iAgree.isChecked()) {
+                boolean ssnBool = false;
+                String sValue =getStringValue(ssn);
+
+                if(sValue.equals("")){
+                    ssn.setError("Fill this field");
+                }
+                else{
+                    ssnBool=checkSSN(sValue);
+                    if(ssnBool==false){
+                        ssn.setError("SSN needs to be 9 characters");
+                    }
+                }
+                boolean rateBool = false;
+                String rateValue =getStringValue(rate);
+                int rateI;
+                if(!rateValue.equals("")) {
+                    try {
+                        rateI=Integer.parseInt(rateValue);
+                    } catch (Exception any) {
+                        rate.setError("Not an integer");
+                    }
+                }
+
+
+                if (iAgree.isChecked()&&ssnBool) {
 
 
                     //fetching data from Registration Form1
@@ -104,6 +129,10 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity implement
         boolean isValid = false;
 
         return isValid;
+    }
+    private String getStringValue(EditText itemValue ){
+        String myValue=itemValue.getText().toString();
+        return myValue;
     }
 
 

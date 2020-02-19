@@ -217,8 +217,9 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
                 String cityValue =getStringValue(city);
                 if(cityValue.equals("")){
                     cBool=false;
-                    address.setError("Fill this field");
+                    city.setError("Fill this field");
                 }
+
                 /*String firstName = fname.getText().toString();
                 String lastName = lname.getText().toString();
                 String email_id = email.getText().toString();
@@ -226,19 +227,18 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
                 String conf_pwd = confirm_password.getText().toString();
                 String dt_birth = dob.getText().toString();
                 String mobile = phone.getText().toString();*/
-                if(fBool&&lBool&&eBool&&pBool&&mBool&&aBool&&zBool&&sBool) {
+                if(fBool&&lBool&&eBool&&pBool&&mBool&&aBool&&zBool&&sBool&&cBool) {
                     Intent intent = new Intent(VendorRegistrationForm1Activity.this, VendorRegistrationForm2Activity.class);
-                    intent.putExtra("fValue", fValue);
-                    intent.putExtra("lValue", lValue);
-                    intent.putExtra("eValue", eValue);
-                    intent.putExtra("pValue", pValue);
-                    intent.putExtra("mobileValue", mobileValue);
-                    intent.putExtra("addrValue",addrValue);
-                    intent.putExtra("zipValue",zipValue);
-                    intent.putExtra("stateValue",stateValue);
-                    intent.putExtra("cityValue",cityValue);
+                    intent.putExtra("fname", fValue);
+                    intent.putExtra("lname", lValue);
+                    intent.putExtra("email", eValue);
+                    intent.putExtra("password", pValue);
+                    intent.putExtra("phone", mobileValue);
+                    intent.putExtra("address",addrValue);
+                    intent.putExtra("zip",zipValue);
+                    intent.putExtra("state",stateValue);
+                    intent.putExtra("city",cityValue);
                     startActivity(intent);
-
                 }
                 else{
                     Toast.makeText(VendorRegistrationForm1Activity.this, "Some fields are incorrect, please tap the tooltip icon to check the issue", Toast.LENGTH_LONG).show();

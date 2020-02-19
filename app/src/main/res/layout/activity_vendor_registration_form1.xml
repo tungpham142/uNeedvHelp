@@ -21,10 +21,27 @@
             android:layout_marginBottom="20dp"
             android:gravity="center">
 
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="-17dp"
+
+                android:src="@drawable/ic_wrench"
+                >
+
+            </ImageView>
             <TextView
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="12pt"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Vendor Registration"></TextView>
+                android:text="Vendor Registration">
+
+            </TextView>
+
+
+
         </LinearLayout>
         <!-- //FirstName LastName-->
 
