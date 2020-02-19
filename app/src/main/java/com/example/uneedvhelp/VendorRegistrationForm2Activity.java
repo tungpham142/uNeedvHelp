@@ -59,7 +59,7 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity implement
                 //Validation for Agree checkbox condition
                 boolean ssnBool = false;
                 String sValue =getStringValue(ssn);
-
+                //validates fields on page
                 if(sValue.equals("")){
                     ssn.setError("Fill this field");
                 }

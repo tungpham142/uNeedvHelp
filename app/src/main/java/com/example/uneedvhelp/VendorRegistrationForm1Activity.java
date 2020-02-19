@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VendorRegistrationForm1Activity extends AppCompatActivity {
-
+    //regex for email
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     ExpandableListAdapter listAdapter;
@@ -122,6 +122,7 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean allValid=false;
                 boolean fBool = false;
+                //validations
                 String fValue =getStringValue(fname);
 
                 if(fValue.equals("")){
@@ -257,6 +258,7 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
     /*
      * Preparing the list data
      */
+
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
@@ -275,6 +277,7 @@ public class VendorRegistrationForm1Activity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(0), gender); // Header, Child data
 
     }
+    //validation functions
         private boolean checkName(String name){
         boolean isValid = false;
         if(name.length()>40){
