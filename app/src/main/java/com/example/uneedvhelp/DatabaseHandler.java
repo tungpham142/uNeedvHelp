@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -27,6 +28,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_SSN = "SSN";
     public static final String COLUMN_RATE = "RATE";
 
+    public static final String TABLE_CUSTOMER = "CUSTOMER";
+
     private SQLiteDatabase database;
 
     public DatabaseHandler(Context context) {
@@ -38,11 +41,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FIRST_NAME + " VARCHAR, " + COLUMN_LAST_NAME + " VARCHAR," + COLUMN_EMAIL + " VARCHAR, " + COLUMN_PASSWORD + " VARCHAR, " + COLUMN_MOBILE + " VARCHAR, " + COLUMN_DOB + " VARCHAR, " + COLUMN_GENDER + " VARCHAR, " + COLUMN_ADDRESS + " VARCHAR, " + COLUMN_CITY + " VARCHAR, " + COLUMN_STATE + " VARCHAR, " + COLUMN_ZIPCODE + " VARCHAR, " + COLUMN_SSN + " VARCHAR, " + COLUMN_RATE + " VARCHAR );");
+
+        String customerTable = "CREATE TABLE " + TABLE_CUSTOMER + " (CustomerId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                                                    "FirstName  VARCHAR(255)    NOT NULL," +
+                                                                    "LastName   VARCHAR(255)    NOT NULL," +
+                                                                    "Email      VARCHAR(255)    NOT NULL," +
+                                                                    "Password   VARCHAR(255)    NOT NULL," +
+                                                                    "Phone      VARCHAR(100)    NOT NULL," +
+                                                                    "Gender     VARCHAR(100), " +
+                                                                    "DOB        DATETIME )";
+        sqLiteDatabase.execSQL(customerTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         onCreate(sqLiteDatabase);
 
     }
@@ -65,8 +79,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SSN, Model.getSsn());
         contentValues.put(COLUMN_RATE, Model.getHourly_rate());
 
-
         database.insert(TABLE_NAME, null, contentValues);
+
+        // Insert Data for Customer Table
+
         database.close();
     }
 
@@ -118,10 +134,69 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
                 model.getEmail();
                 model.getPassword();
-
             }
         }
 
+    }
+
+    public void insertCustomer(Customer customer){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("FirstName", customer.getFirstName());
+        values.put("LastName", customer.getLastName());
+        values.put("Email", customer.getEmail());
+        values.put("Password", customer.getPassword());
+        values.put("Phone", customer.getPhone());
+        values.put("Gender", customer.getGender());
+
+        db.insert(TABLE_CUSTOMER, null, values);
+        db.close();
+    }
+
+    public List<Customer> getAllCustomers(){
+        List<Customer> customers = new ArrayList<Customer>();
+        String sql = "SELECT * FROM " + TABLE_CUSTOMER;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        if(c.moveToFirst()){
+            do{
+                Customer customer = new Customer();
+                customer.setCustomerId(c.getInt(c.getColumnIndex("CustomerId")));
+                customer.setEmail(c.getString(c.getColumnIndex("Email")));
+                customer.setFirstName(c.getString(c.getColumnIndex("FirstName")));
+                customer.setLastName(c.getString(c.getColumnIndex("LastName")));
+                customer.setPhone(c.getString(c.getColumnIndex("Phone")));
+                customer.setGender(c.getString(c.getColumnIndex("Gender")));
+
+                customers.add(customer);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return customers;
+    }
+
+    public Customer getCustomerByEmail(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "SELECT * FROM Customer WHERE Email = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{email});
+
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        Customer customer = new Customer();
+        customer.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
+        customer.setFirstName(cursor.getString(cursor.getColumnIndex("FirstName")));
+        customer.setLastName(cursor.getString(cursor.getColumnIndex("LastName")));
+        customer.setPhone(cursor.getString(cursor.getColumnIndex("Phone")));
+        customer.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
+        customer.setCustomerId(cursor.getInt(cursor.getColumnIndex("CustomerId")));
+
+        db.close();
+        return customer;
     }
 
     /*public void updateRecord(ContactModel contactModel) {

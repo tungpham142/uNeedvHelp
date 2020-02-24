@@ -24,7 +24,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
     private TextView mUserRegistered;
     private int counter=5;
     private TextView mInfo;
-    private FirebaseAuth fireBaseAuth;
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,9 @@ public class CustomerLoginActivity extends AppCompatActivity {
         mLogin = findViewById(R.id.btnLogin);
         mUserRegistered = findViewById(R.id.UserRegister);
         mInfo = findViewById(R.id.tvInfo);
-        fireBaseAuth = FirebaseAuth.getInstance();
+        db = new DatabaseHandler(this);
 
         mInfo.setText("No. of attempts remaining: 5");
-
-        if(fireBaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), CustomerSignInActivity.class));
-            finish();
-        }
 
         mUserRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,24 +68,21 @@ public class CustomerLoginActivity extends AppCompatActivity {
 
                 if(!validation) return;
 
-                fireBaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(CustomerLoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
-                           startActivity(new Intent(getApplicationContext(), CustomerSignInActivity.class));
-                        }
-                        else{
-                            Toast.makeText(CustomerLoginActivity.this, "Your email or password is not correct. ", Toast.LENGTH_LONG).show();
-                            counter--;
-                            mInfo.setText("No. of attempts remaining: " + counter);
+                Customer customerDb = db.getCustomerByEmail(email);
 
-                            if (counter == 0) {
-                                mLogin.setEnabled(false);
-                            }
-                        }
+                if(customerDb != null && customerDb.getPassword().equals(password)){
+                    Toast.makeText(CustomerLoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), VendorSignedInActivity.class));
+                }
+                else{
+                    Toast.makeText(CustomerLoginActivity.this, "Your email or password is not correct. ", Toast.LENGTH_LONG).show();
+                    counter--;
+                    mInfo.setText("No. of attempts remaining: " + counter);
+
+                    if (counter == 0) {
+                        mLogin.setEnabled(false);
                     }
-                });
+                }
             }
         });
 

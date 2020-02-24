@@ -33,11 +33,9 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
     EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword, mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
-    FirebaseAuth fireBaseAuth;
-    FirebaseFirestore firebaseFirestore;
-    String customerId;
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private DatabaseHandler db;
     private static final String TAG = "RegistrationActivity";
 
     @Override
@@ -54,8 +52,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.btnLogin);
         mLoginBtn =  findViewById(R.id.login);
         mDisplayDate = findViewById(R.id.tvDate);
-        fireBaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+        db = new DatabaseHandler(this);
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,27 +140,21 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
-                fireBaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CustomerRegistrationActivity.this, "You are Signed Up. ", Toast.LENGTH_LONG).show();
-                            customerId = fireBaseAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = firebaseFirestore.collection("customer").document(customerId);
-                            Map<String, Object> customer = new HashMap<>();
-                            customer.put("firstName", firstName);
-                            customer.put("lastName", lastName);
-                            customer.put("email", email);
-                            customer.put("phone", phone);
-                            customer.put("pass",password);
-                            documentReference.set(customer);
+                Customer customer = new Customer();
+                customer.setFirstName(firstName);
+                customer.setLastName(lastName);
+                customer.setEmail(email);
+                customer.setPhone(phone);
+                customer.setPassword(password);
 
-                            startActivity(new Intent(getApplicationContext(), CustomerLoginActivity.class));
-                        } else{
-                            Toast.makeText(CustomerRegistrationActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                try{
+                    db.insertCustomer(customer);
+                    Toast.makeText(CustomerRegistrationActivity.this, "You are Signed Up. ", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), CustomerLoginActivity.class));
+                }catch (Exception e) {
+                    Toast.makeText(CustomerRegistrationActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
         });
     }
