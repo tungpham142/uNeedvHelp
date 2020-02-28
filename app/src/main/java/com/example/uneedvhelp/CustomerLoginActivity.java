@@ -1,6 +1,5 @@
 package com.example.uneedvhelp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerLoginActivity extends AppCompatActivity {
     private EditText mName;
@@ -31,8 +25,8 @@ public class CustomerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_login);
 
-        mName = findViewById(R.id.Name);
-        mPassword = findViewById(R.id.Password);
+        mName = findViewById(R.id.email);
+        mPassword = findViewById(R.id.password);
         mLogin = findViewById(R.id.btnLogin);
         mUserRegistered = findViewById(R.id.UserRegister);
         mInfo = findViewById(R.id.tvInfo);
@@ -51,7 +45,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = mName.getText().toString().trim();
+                String email = mName.getText().toString().toLowerCase().trim();
                 String password = mPassword.getText().toString().trim();
 
                 boolean validation = true;
@@ -72,7 +66,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
 
                 if(customerDb != null && customerDb.getPassword().equals(password)){
                     Toast.makeText(CustomerLoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), VendorSignedInActivity.class));
+                    startActivity(new Intent(getApplicationContext(), CustomerSignInActivity.class));
                 }
                 else{
                     Toast.makeText(CustomerLoginActivity.this, "Your email or password is not correct. ", Toast.LENGTH_LONG).show();
@@ -93,19 +87,4 @@ public class CustomerLoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void validate(String Name, String Password) {
-        if ((Name.equals("admin")) && (Password.equals("123456"))){
-            Intent intent = new Intent(CustomerLoginActivity.this, CustomerSignInActivity.class);
-            startActivity(intent);
-        } else {
-
-            counter--;
-            mInfo.setText("No. of attempts remaining: " + String.valueOf(counter));
-
-            if (counter == 0) {
-                mLogin.setEnabled(false);
-            }
-        }
-
-    }
 }
