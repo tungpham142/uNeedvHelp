@@ -175,7 +175,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("Title", request.getTitle());
         values.put("Description", request.getDescription());
 
-        db.insert(TABLE_CUSTOMER, null, values);
+        db.insert(TABLE_REQUESTS, null, values);
         db.close();
     }
 
