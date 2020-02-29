@@ -57,8 +57,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CustomerId   VARCHAR(255)    NOT NULL," +
                 "Description   VARCHAR(255)    NOT NULL," +
                 "Title      VARCHAR(51)    NOT NULL," +
-                "EndDate    VARCHAR(51), " +
-                "StartDate        VARCHAR(51) NOT NULL )";
+                "EndDate    VARCHAR(51)," +
+                "StartDate        VARCHAR(51) NOT NULL," +
+                "ServiceCategory VARCHAR(255) NOT NULL )";
 
         sqLiteDatabase.execSQL(customerRequest);
         sqLiteDatabase.execSQL(customerTable);
@@ -174,6 +175,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("StartDate", request.getStartDate());
         values.put("Title", request.getTitle());
         values.put("Description", request.getDescription());
+        values.put("ServiceCategory",request.getServiceCategory());
 
         db.insert(TABLE_REQUESTS, null, values);
         db.close();

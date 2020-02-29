@@ -53,4 +53,11 @@ public class CustomerRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getServiceCategory(){
+        return category;
+    }
+    String category;
+    public void setServiceCategory(String category){
+        this.category=category;
+    }
 }
