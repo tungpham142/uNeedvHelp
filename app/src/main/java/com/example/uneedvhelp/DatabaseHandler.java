@@ -28,7 +28,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_SSN = "SSN";
     public static final String COLUMN_RATE = "RATE";
 
+
     public static final String TABLE_CUSTOMER = "CUSTOMER";
+    public static final String TABLE_REQUESTS = "REQUEST";
+
 
     private SQLiteDatabase database;
 
@@ -53,6 +56,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                                                     "State      VARCHAR(20), " +
                                                                     "Zip        VARCHAR(15), " +
                                                                     "DOB        VARCHAR(100) )";
+        String customerRequest = "CREATE TABLE " + TABLE_REQUESTS + " (RequestId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CustomerId   VARCHAR(255)    NOT NULL," +
+                "Description   VARCHAR(255)    NOT NULL," +
+                "Title      VARCHAR(51)    NOT NULL," +
+                "EndDate    VARCHAR(51)," +
+                "StartDate        VARCHAR(51) NOT NULL," +
+                "ServiceCategory VARCHAR(255) NOT NULL )";
+
+        sqLiteDatabase.execSQL(customerRequest);                                                              
         sqLiteDatabase.execSQL(customerTable);
     }
 
@@ -164,6 +176,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CUSTOMER, null, values);
         db.close();
     }
+    public void insertCustomerRequest(CustomerRequest request){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("CustomerId", request.getId());
+        values.put("RequestId", request.getId());
+        values.put("EndDate", request.getEndDate());
+        values.put("StartDate", request.getStartDate());
+        values.put("Title", request.getTitle());
+        values.put("Description", request.getDescription());
+        values.put("ServiceCategory",request.getServiceCategory());
+
+        db.insert(TABLE_REQUESTS, null, values);
+        db.close();
+    }
+
 
     public List<Customer> getAllCustomers(){
         List<Customer> customers = new ArrayList<Customer>();
