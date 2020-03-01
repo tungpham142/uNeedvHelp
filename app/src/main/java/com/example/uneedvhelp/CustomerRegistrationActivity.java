@@ -1,6 +1,5 @@
 package com.example.uneedvhelp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -8,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -15,72 +15,69 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
+import java.util.Locale;
 
 public class CustomerRegistrationActivity extends AppCompatActivity {
-    EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword, mPhone;
+    EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword, mPhone, mAddress, mZip, mState, mCity;
     Button mRegisterBtn;
     TextView mLoginBtn;
-    private TextView mDisplayDate;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    RadioGroup radiogrp;
+
+    private TextView mDob;
+    private DatePickerDialog datePickerDialog;
+    private SimpleDateFormat dateFormatter;
     private DatabaseHandler db;
-    private static final String TAG = "RegistrationActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_registration);
 
-        mFirstName = findViewById(R.id.Name);
+        mFirstName = findViewById(R.id.firstName);
         mLastName = findViewById(R.id.lastName);
         mEmail = findViewById(R.id.email);
-        mPassword = findViewById(R.id.Password);
+        mPassword = findViewById(R.id.password);
         mConfirmPassword = findViewById(R.id.confirm_pw);
         mPhone = findViewById(R.id.phone);
-        mRegisterBtn = findViewById(R.id.btnLogin);
-        mLoginBtn =  findViewById(R.id.login);
-        mDisplayDate = findViewById(R.id.tvDate);
+        mRegisterBtn = findViewById(R.id.btnSignUp);
+        mLoginBtn =  findViewById(R.id.btnLogin);
+        mDob = findViewById(R.id.dob);
+        mZip = findViewById(R.id.edt_zipcode);
+        mState = findViewById(R.id.edt_state);
+        mCity  = findViewById(R.id.edt_city);
+        mAddress = findViewById(R.id.edt_address);
+        radiogrp = findViewById(R.id.radio_grp);
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         db = new DatabaseHandler(this);
 
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+        //date of birth edittext and date picker
+        mDob.setInputType(InputType.TYPE_NULL);
+        mDob.requestFocus();
+        Calendar newCalendar = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                mDob.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        mDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CustomerRegistrationActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-                }
-        });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                Log.d(TAG,"OnDateSet: mm/dd/yyyy: " + month + "/" + dayOfMonth + "/" + year);
-                String date = month + "/" + dayOfMonth + "/" + year;
-                mDisplayDate.setText(date);
+                datePickerDialog.show();
             }
-        };
+        });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,10 +91,14 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String firstName = mFirstName.getText().toString().trim();
                 final String lastName = mLastName.getText().toString().trim();
-                final String email = mEmail.getText().toString().trim();
+                final String email = mEmail.getText().toString().toLowerCase().trim();
                 final String password = mPassword.getText().toString();
                 final String confirmPassword = mConfirmPassword.getText().toString();
                 final String phone = mPhone.getText().toString().trim();
+                final String address = mAddress.getText().toString().trim();
+                final String state = mState.getText().toString().trim();
+                final String zip = mZip.getText().toString().trim();
+
                 boolean validation = true;
 
                 if(TextUtils.isEmpty(firstName)){
@@ -140,14 +141,31 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
+                String gender = "";
+                int radioId = radiogrp.getCheckedRadioButtonId();
+                if(radioId > 0){
+                    RadioButton radioBtn = findViewById(radioId);
+                    gender = radioBtn.getText().toString();
+                }
+                String dobValue = mDob.getText().toString();
+
                 Customer customer = new Customer();
                 customer.setFirstName(firstName);
                 customer.setLastName(lastName);
                 customer.setEmail(email);
                 customer.setPhone(phone);
                 customer.setPassword(password);
+                customer.setAddress(address);
+                customer.setState(state);
+                customer.setZip(zip);
+                customer.setGender(gender);
+                customer.setDob(dobValue);
 
                 try{
+                    if(db.getCustomerByEmail(email) != null){
+                        Toast.makeText(CustomerRegistrationActivity.this, "You are already signed up !\nPlease try to login. ", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     db.insertCustomer(customer);
                     Toast.makeText(CustomerRegistrationActivity.this, "You are Signed Up. ", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), CustomerLoginActivity.class));
@@ -166,7 +184,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
 
     // Method to check if a phone number is valid
     protected boolean isValidPhone(String phone) {
-        return (!TextUtils.isEmpty(phone) && Patterns.PHONE.matcher(phone).matches());
+        return (!TextUtils.isEmpty(phone) && Patterns.PHONE.matcher(phone).matches() && phone.length() >= 10);
     }
 
     // Method to check if a phone number is valid

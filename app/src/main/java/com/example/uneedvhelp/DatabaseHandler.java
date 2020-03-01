@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "SQLiteDatabase.db";
     public static final String TABLE_NAME = "VENDOR";
     public static final String COLUMN_ID = "ID";
@@ -48,11 +48,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String customerTable = "CREATE TABLE " + TABLE_CUSTOMER + " (CustomerId INTEGER PRIMARY KEY AUTOINCREMENT," +
                                                                     "FirstName  VARCHAR(255)    NOT NULL," +
                                                                     "LastName   VARCHAR(255)    NOT NULL," +
-                                                                    "Email      VARCHAR(255)    NOT NULL," +
+                                                                    "Email      VARCHAR(255)    NOT NULL UNIQUE," +
                                                                     "Password   VARCHAR(255)    NOT NULL," +
                                                                     "Phone      VARCHAR(100)    NOT NULL," +
-                                                                    "Gender     VARCHAR(100), " +
-                                                                    "DOB        DATETIME )";
+                                                                    "Gender     VARCHAR(20), " +
+                                                                    "Address    VARCHAR(100), " +
+                                                                    "State      VARCHAR(20), " +
+                                                                    "Zip        VARCHAR(15), " +
+                                                                    "DOB        VARCHAR(100) )";
         String customerRequest = "CREATE TABLE " + TABLE_REQUESTS + " (RequestId INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "CustomerId   VARCHAR(255)    NOT NULL," +
                 "Description   VARCHAR(255)    NOT NULL," +
@@ -61,7 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "StartDate        VARCHAR(51) NOT NULL," +
                 "ServiceCategory VARCHAR(255) NOT NULL )";
 
-        sqLiteDatabase.execSQL(customerRequest);
+        sqLiteDatabase.execSQL(customerRequest);                                                              
         sqLiteDatabase.execSQL(customerTable);
     }
 
@@ -70,7 +73,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         onCreate(sqLiteDatabase);
-
     }
 
     //insert data
@@ -91,7 +93,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SSN, Model.getSsn());
         contentValues.put(COLUMN_RATE, Model.getHourly_rate());
 
-        database.insert(TABLE_NAME, null, contentValues);
+        try {
+            database.insert(TABLE_NAME, null, contentValues);
+        }
+        catch (Exception e){
+            throw e;
+        }
 
         // Insert Data for Customer Table
 
@@ -161,6 +168,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("Password", customer.getPassword());
         values.put("Phone", customer.getPhone());
         values.put("Gender", customer.getGender());
+        values.put("Dob", customer.getDob());
+        values.put("Address", customer.getAddress());
+        values.put("Zip", customer.getZip());
+        values.put("State", customer.getState());
 
         db.insert(TABLE_CUSTOMER, null, values);
         db.close();
@@ -198,6 +209,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 customer.setLastName(c.getString(c.getColumnIndex("LastName")));
                 customer.setPhone(c.getString(c.getColumnIndex("Phone")));
                 customer.setGender(c.getString(c.getColumnIndex("Gender")));
+                customer.setGender(c.getString(c.getColumnIndex("Dob")));
+                customer.setGender(c.getString(c.getColumnIndex("Address")));
+                customer.setGender(c.getString(c.getColumnIndex("State")));
+                customer.setGender(c.getString(c.getColumnIndex("Zip")));
 
                 customers.add(customer);
             } while (c.moveToNext());
@@ -212,8 +227,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String sql = "SELECT * FROM Customer WHERE Email = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{email});
 
-        if (cursor!= null)
-            cursor.moveToFirst();
+        if (cursor.getCount() <= 0)
+                return null;
+
+        cursor.moveToFirst();
 
         Customer customer = new Customer();
         customer.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
