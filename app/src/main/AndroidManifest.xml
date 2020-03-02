@@ -28,6 +28,7 @@
         <activity android:name=".HomePageActivity" />
         <activity android:name=".VendorLoginActivity" />
         <activity android:name=".VendorRegistrationForm2Activity" />
+        <activity android:name=".CustomerRequestActivity"/>
     </application>
 
 </manifest>

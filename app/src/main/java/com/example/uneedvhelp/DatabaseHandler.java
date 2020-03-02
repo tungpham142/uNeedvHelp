@@ -57,7 +57,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                                                     "Zip        VARCHAR(15), " +
                                                                     "DOB        VARCHAR(100) )";
         String customerRequest = "CREATE TABLE " + TABLE_REQUESTS + " (RequestId INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CustomerId   VARCHAR(255)    NOT NULL," +
+                "CustomerId   INTEGER   NOT NULL," +
                 "Description   VARCHAR(255)    NOT NULL," +
                 "Title      VARCHAR(51)    NOT NULL," +
                 "EndDate    VARCHAR(51)," +

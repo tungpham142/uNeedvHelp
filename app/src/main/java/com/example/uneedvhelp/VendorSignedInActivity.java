@@ -22,5 +22,9 @@ public class VendorSignedInActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
     }
+
 }

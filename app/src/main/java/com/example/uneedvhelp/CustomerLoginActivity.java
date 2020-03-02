@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
     private int counter=5;
     private TextView mInfo;
     private DatabaseHandler db;
+    public final String TAG="Here is your data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,11 @@ public class CustomerLoginActivity extends AppCompatActivity {
 
                 if(customerDb != null && customerDb.getPassword().equals(password)){
                     Toast.makeText(CustomerLoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), CustomerSignInActivity.class));
+                    Intent i = new Intent(getApplicationContext(),CustomerSignInActivity.class);
+                    Log.w(TAG,"This is the value of customer: "+customerDb.customerId);
+                    i.putExtra("customerId",customerDb.customerId);
+                    startActivity(i);
+
                 }
                 else{
                     Toast.makeText(CustomerLoginActivity.this, "Your email or password is not correct. ", Toast.LENGTH_LONG).show();

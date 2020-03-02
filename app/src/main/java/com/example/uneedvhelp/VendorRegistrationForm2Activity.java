@@ -13,8 +13,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.regex.Pattern;
 
@@ -49,8 +48,7 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity {
 
         //Firebase
         // Write a message to the database
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("message");
+
 
         ssn = findViewById(R.id.edt_ssn);
         rate = findViewById(R.id.edt_hourly_rate);
@@ -92,7 +90,7 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity {
                 String social = ssn.getText().toString();
                 String hrly_rate = rate.getText().toString();
 
-                String strKey = myRef.push().getKey();
+
 
                 VendorRegistrationDataModel dataModel = new VendorRegistrationDataModel();
                 dataModel.setFirstName(fName);
@@ -109,10 +107,7 @@ public class VendorRegistrationForm2Activity extends AppCompatActivity {
                 dataModel.setSsn(social);
                 dataModel.setHourly_rate(hrly_rate);
                 db.insertRecord(dataModel);
-                dataModel.setStrKey(strKey);
 
-
-                myRef.child(strKey).setValue(dataModel);
 
                 //Validation for Agree checkbox condition
                 boolean ssnBool = false;
