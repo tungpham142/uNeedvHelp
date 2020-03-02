@@ -244,6 +244,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return customer;
     }
 
+    public List<CustomerRequest> getListCustomerRequest(){
+        CustomerRequest request = null;
+        List<CustomerRequest> requestList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM Request";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            request = new CustomerRequest();
+            request.setTitle(cursor.getString(cursor.getColumnIndex("Title")));
+            request.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+            request.setEndDate(cursor.getString(cursor.getColumnIndex("EndDate")));
+            request.setStartDate(cursor.getString(cursor.getColumnIndex("StartDate")));
+            request.setServiceCategory(cursor.getString(cursor.getColumnIndex("ServiceCategory")));
+            request.setId(cursor.getInt(cursor.getColumnIndex("RequestId")));
+            request.setCustomerId(cursor.getInt(cursor.getColumnIndex("CustomerId")));
+
+            requestList.add(request);
+            cursor.moveToNext();
+        }
+
+        db.close();
+        return requestList;
+
+
+    }
+
     /*public void updateRecord(ContactModel contactModel) {
         database = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();;

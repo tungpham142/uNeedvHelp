@@ -1,25 +1,25 @@
 package com.example.uneedvhelp;
 
 public class CustomerRequest {
-    String id;
+    int id;
     String endDate;
     String startDate;
     String title;
     String description;
-    String customerId;
+    int customerId;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void getCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -48,7 +48,6 @@ public class CustomerRequest {
     }
     public String getDescription(){
         return description;
-
     }
     public void setDescription(String description) {
         this.description = description;

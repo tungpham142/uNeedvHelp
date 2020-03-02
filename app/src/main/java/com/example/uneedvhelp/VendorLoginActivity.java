@@ -11,12 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class VendorLoginActivity extends AppCompatActivity {
 
     Button login;
@@ -31,8 +25,6 @@ public class VendorLoginActivity extends AppCompatActivity {
 
         //Firebase
         // Write a message to the database
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("message");
         db = new DatabaseHandler(this);
         login = findViewById(R.id.btn_login);
         email = findViewById(R.id.edt_email);
@@ -57,42 +49,6 @@ public class VendorLoginActivity extends AppCompatActivity {
                     password.setError("Please type password");
 
                 }
-
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                       /* String email = dataSnapshot.child("email").getValue().toString();
-                        String pass = dataSnapshot.child("password").getValue().toString();*/
-
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                             dataModel = snapshot.getValue(VendorRegistrationDataModel.class);
-
-                        }
-                        db.retiriveData(dataModel,email_id,pwd);
-
-                        String email = dataModel.getEmail();
-                        String pass = dataModel.getPassword();
-
-
-
-                        if(email_id.equals(email)&& pwd.equals(pass)) {
-                            Intent intent = new Intent(VendorLoginActivity.this, VendorSignedInActivity.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(VendorLoginActivity.this, "Username or Password incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
 
             }
         });
