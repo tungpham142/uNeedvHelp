@@ -180,7 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("CustomerId", request.getId());
+        values.put("CustomerId", request.getCustomerId());
         values.put("RequestId", request.getId());
         values.put("EndDate", request.getEndDate());
         values.put("StartDate", request.getStartDate());
@@ -191,6 +191,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_REQUESTS, null, values);
         db.close();
     }
+
 
 
     public List<Customer> getAllCustomers(){

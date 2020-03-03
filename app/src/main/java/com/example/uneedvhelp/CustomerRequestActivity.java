@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +22,8 @@ import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.Date;
+
 
 public class CustomerRequestActivity extends AppCompatActivity {
 
@@ -33,10 +36,13 @@ public class CustomerRequestActivity extends AppCompatActivity {
     //submission button
     private Button submit_button;
     public final String TAG="Here is your data";
+    private DatabaseHandler db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        db = new DatabaseHandler(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         setContentView(R.layout.activity_customer_request);
         endDate = findViewById(R.id.request_end_date);
@@ -88,7 +94,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
                 //Your values for validation :)
                 requestTitle = findViewById(R.id.request_title);
                 String mTitle = requestTitle.getText().toString();
-                requestExplanation = findViewById(R.id.request_title);
+                requestExplanation = findViewById(R.id.request_explanation);
                 String mExplanation = requestExplanation.getText().toString();
                 String mEndDate = endDate.getText().toString();
                 String mStartDate = startDate.getText().toString();
@@ -103,16 +109,108 @@ public class CustomerRequestActivity extends AppCompatActivity {
 
                 String temp_Category="Plumbing";
                 // TODO:Add Validations here
+                Date oStartDate = new Date();
+                Date oEndDate = new Date();
 
-                if(correct_request==false) {
-                    // TODO: show error message
+
+                try {
+                    oStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(mStartDate);
                 }
-                else{
-                    // TODO:Add Database Code Here
-                    Intent i = new Intent(getApplicationContext(), CustomerSignInActivity.class);
+                catch(Exception e){
 
+                }
+                try {
+                    oEndDate = new SimpleDateFormat("dd-MM-yyyy").parse(mEndDate);
+                }
+                catch(Exception e){
+
+                }
+
+                boolean titleBoolean=true;
+                if(mTitle.equals("") ){
+                    requestTitle.setError("Fill the Field");
+                    titleBoolean=false;
+                }
+                else if (mTitle.length()<10){
+
+                    requestTitle.setError("Title length too short");
+                    titleBoolean=false;
+
+                }
+                else if (mTitle.length()> 50)
+                {
+
+                    requestTitle.setError("Title length too long");
+                    titleBoolean=false;
+
+                }
+
+
+                //description validation
+
+                boolean explanationBoolean=true;
+
+                if(mExplanation.equals("")){
+                    requestExplanation.setError("Fill the field");
+                    explanationBoolean=false;
+
+                }
+                else if(mExplanation.length() > 255){
+                    requestExplanation.setError("Please describe under 255 characters");
+                    explanationBoolean=false;
+                }
+                else if (mExplanation.length() < 40){
+                    requestExplanation.setError("Please Describe in more than 40 character");
+                    explanationBoolean=false;
+                }
+                Date today=new Date();
+                long mintime=today.getTime()+2*24*60*60*1000;
+                Date sMin=new Date(mintime);
+                long maxtime=today.getTime()+14*24*60*60*1000;
+                Date sMax=new Date(maxtime);
+                boolean dateBoolean=true;
+                if(mStartDate.equals("")){
+                    startDate.setError("Fill the field");
+                    dateBoolean=false;
+                }
+                else if(oStartDate.before(sMin)){
+                    ((TextView) findViewById(R.id.request_start_date)).requestFocus();
+                    ((TextView) findViewById(R.id.request_start_date)).setError("Date needs to be at least 2 days later ");
+                    dateBoolean=false;
+
+                }
+
+                else if(oStartDate.after(sMax)){
+                    ((TextView) findViewById(R.id.request_start_date)).requestFocus();
+                    ((TextView) findViewById(R.id.request_start_date)).setError("Date needs to be no less than 14 days later ");
+                    dateBoolean=false;
+
+
+                }
+                /*if(mEndDate.equals("")){
+                    endDate.setError("Fill the field");
+
+                }*/
+
+                if(dateBoolean&&explanationBoolean&&titleBoolean) {
+                    Intent i = new Intent(getApplicationContext(), CustomerSignInActivity.class);
+                    CustomerRequest cust = new CustomerRequest();
+                    cust.setCustomerId(customerId);
+                    cust.setTitle(mTitle);
+                    cust.setDescription(mExplanation);
+                    cust.setStartDate(mStartDate);
+                    cust.setEndDate(mEndDate);
+                    cust.setServiceCategory(temp_Category);
+
+                    db.insertCustomerRequest(cust);
                     startActivity(i);
                     finish();
+
+                }
+                else{
+                   
+                    Toast.makeText(CustomerRequestActivity.this, "Some of these fields are incorrect, please correct them", Toast.LENGTH_SHORT).show();
+
 
                 }
             }
@@ -128,5 +226,6 @@ public class CustomerRequestActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);*/
     }
+
 
 }
