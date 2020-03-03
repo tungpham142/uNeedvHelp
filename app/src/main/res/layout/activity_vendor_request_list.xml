@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#d1d1d1"
+        android:background="#FFFFFF"
         android:divider="#d1d1d1"
         android:dividerHeight="10dp"></ListView>
 

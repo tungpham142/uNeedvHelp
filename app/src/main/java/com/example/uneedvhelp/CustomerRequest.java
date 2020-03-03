@@ -7,6 +7,8 @@ public class CustomerRequest {
     String title;
     String description;
     int customerId;
+    String firstName;
+    String lastName;
 
     public int getId() {
         return id;
@@ -58,5 +60,13 @@ public class CustomerRequest {
     String category;
     public void setServiceCategory(String category){
         this.category=category;
+    }
+
+    public String getName(){
+        return firstName + " " + lastName;
+    }
+
+    public String getDate(){
+        return startDate + "        " + endDate;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.uneedvhelp;
+package com.example.uneedvhelp.model;
 
 import java.util.Date;
 

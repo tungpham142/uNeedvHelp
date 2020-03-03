@@ -6,12 +6,15 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.uneedvhelp.adapter.ListRequestAdapter;
+
 import java.util.List;
 
 public class VendorRequestListActivity extends AppCompatActivity {
     private ListView lvCustomerRequest;
     private DatabaseHandler db;
     private List<CustomerRequest> mRequestList;
+    private ListRequestAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -21,6 +24,7 @@ public class VendorRequestListActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
 
         mRequestList  = db.getListCustomerRequest();
-
+        adapter = new ListRequestAdapter(this, mRequestList);
+        lvCustomerRequest.setAdapter(adapter);
     }
 }

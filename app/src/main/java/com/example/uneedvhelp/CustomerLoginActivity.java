@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uneedvhelp.model.Customer;
+
 public class CustomerLoginActivity extends AppCompatActivity {
     private EditText mName;
     private EditText mPassword;
