@@ -54,6 +54,14 @@ public class CustomerRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
     public String getServiceCategory(){
         return category;
     }

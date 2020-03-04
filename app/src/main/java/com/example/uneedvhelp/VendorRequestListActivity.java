@@ -1,6 +1,7 @@
 package com.example.uneedvhelp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -20,10 +21,12 @@ public class VendorRequestListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_request_list);
+        String category = getIntent().getStringExtra("category");
+
         lvCustomerRequest = findViewById(R.id.lv_vendor_request);
         db = new DatabaseHandler(this);
 
-        mRequestList  = db.getListCustomerRequest();
+        mRequestList  = db.getListCustomerRequestByCategory(category);
         adapter = new ListRequestAdapter(this, mRequestList);
         lvCustomerRequest.setAdapter(adapter);
     }

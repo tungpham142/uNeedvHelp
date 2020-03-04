@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "SQLiteDatabase.db";
     public static final String TABLE_NAME = "VENDOR";
     public static final String COLUMN_ID = "ID";
@@ -59,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                                                     "Zip        VARCHAR(15), " +
                                                                     "DOB        VARCHAR(100) )";
         String customerRequest = "CREATE TABLE " + TABLE_REQUESTS + " (RequestId INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CustomerId   VARCHAR(255)    NOT NULL," +
+                "CustomerId   INTEGER    NOT NULL," +
                 "Description   VARCHAR(255)    NOT NULL," +
                 "Title      VARCHAR(51)    NOT NULL," +
                 "EndDate    VARCHAR(51)," +
@@ -263,6 +263,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             request.setServiceCategory(cursor.getString(cursor.getColumnIndex("ServiceCategory")));
             request.setId(cursor.getInt(cursor.getColumnIndex("RequestId")));
             request.setCustomerId(cursor.getInt(cursor.getColumnIndex("CustomerId")));
+
+            requestList.add(request);
+            cursor.moveToNext();
+        }
+
+        db.close();
+        return requestList;
+    }
+
+    public List<CustomerRequest> getListCustomerRequestByCategory(String category){
+        CustomerRequest request = null;
+        List<CustomerRequest> requestList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql =
+                "SELECT  *" +
+                "FROM Request r " +
+                "JOIN Customer c " +
+                "ON r.CustomerId = c.CustomerId " +
+                "WHERE r.ServiceCategory = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{category});
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            request = new CustomerRequest();
+            request.setTitle(cursor.getString(cursor.getColumnIndex("Title")));
+            request.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+            request.setEndDate(cursor.getString(cursor.getColumnIndex("EndDate")));
+            request.setStartDate(cursor.getString(cursor.getColumnIndex("StartDate")));
+            request.setServiceCategory(cursor.getString(cursor.getColumnIndex("ServiceCategory")));
+            request.setId(cursor.getInt(cursor.getColumnIndex("RequestId")));
+            request.setLastName(cursor.getString(cursor.getColumnIndex("LastName")));
+            request.setFirstName(cursor.getString(cursor.getColumnIndex("FirstName")));
 
             requestList.add(request);
             cursor.moveToNext();

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TemporaryAddRequestActivity  extends AppCompatActivity {
     EditText mTitle, mDescription, mStartDate, mEndDate, mCategory;
-    Button mViewRequestBtn, mAddRequestBtn;
+    Button mApplianceBtn, mElectricalBtn, mPlumbingBtn, mHomeCleaningBtn, mTutoringBtn, mPackagingBtn, mComputerRepairBtn, mHomeRepairBtn, mPestControlBtn, mAddRequestBtn;
     private DatabaseHandler db;
 
     @Override
@@ -29,14 +29,87 @@ public class TemporaryAddRequestActivity  extends AppCompatActivity {
         mCategory = findViewById(R.id.category);
         db = new DatabaseHandler(this);
 
-        mViewRequestBtn = findViewById(R.id.view_request_btn);
+        mApplianceBtn = findViewById(R.id.view_appliance_btn);
+        mElectricalBtn = findViewById(R.id.view_electrical_btn);
+        mPlumbingBtn = findViewById(R.id.view_plumbing_btn);
+        mHomeCleaningBtn = findViewById(R.id.view_home_cleaning_btn);
+        mPackagingBtn = findViewById(R.id.view_packaging_btn);
+        mTutoringBtn = findViewById(R.id.view_tutoring_btn);
+        mComputerRepairBtn = findViewById(R.id.view_computer_repair_btn);
+        mHomeRepairBtn = findViewById(R.id.view_home_repair_btn);
+        mPestControlBtn = findViewById(R.id.view_pest_control_btn);
         mAddRequestBtn = findViewById(R.id.add_request_btn);
 
-        mViewRequestBtn.setOnClickListener(new View.OnClickListener() {
+        mApplianceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), VendorRequestListActivity.class));
-                finish();
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mApplianceBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mElectricalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mElectricalBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPlumbingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPlumbingBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mHomeCleaningBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mHomeCleaningBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPackagingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPackagingBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mTutoringBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mTutoringBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mComputerRepairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mComputerRepairBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mHomeRepairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mHomeRepairBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPestControlBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPestControlBtn.getText().toString().trim());
+                startActivity(intent);
             }
         });
 
