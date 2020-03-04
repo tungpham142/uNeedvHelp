@@ -37,6 +37,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
     private Button submit_button;
     public final String TAG="Here is your data";
     private DatabaseHandler db;
+    Button mApplianceBtn, mElectricalBtn, mPlumbingBtn, mHomeCleaningBtn, mTutoringBtn, mPackagingBtn, mComputerRepairBtn, mHomeRepairBtn, mPestControlBtn, mAddRequestBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,99 @@ public class CustomerRequestActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         setContentView(R.layout.activity_customer_request);
+        mApplianceBtn = findViewById(R.id.view_appliance_btn);
+        mElectricalBtn = findViewById(R.id.view_electrical_btn);
+        mPlumbingBtn = findViewById(R.id.view_plumbing_btn);
+        mHomeCleaningBtn = findViewById(R.id.view_home_cleaning_btn);
+        mPackagingBtn = findViewById(R.id.view_packaging_btn);
+        mTutoringBtn = findViewById(R.id.view_tutoring_btn);
+        mComputerRepairBtn = findViewById(R.id.view_computer_repair_btn);
+        mHomeRepairBtn = findViewById(R.id.view_home_repair_btn);
+        mPestControlBtn = findViewById(R.id.view_pest_control_btn);
+        mAddRequestBtn = findViewById(R.id.add_request_btn);
+        /*
+        BUTTONS FOR TESTING
+         */
+        mApplianceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mApplianceBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mElectricalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mElectricalBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPlumbingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPlumbingBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mHomeCleaningBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mHomeCleaningBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPackagingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPackagingBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mTutoringBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mTutoringBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mComputerRepairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mComputerRepairBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mHomeRepairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mHomeRepairBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        mPestControlBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VendorRequestListActivity.class);
+                intent.putExtra("category", mPestControlBtn.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+        /*
+         END BUTTONS FOR TESTING
+         */
+
         endDate = findViewById(R.id.request_end_date);
         endDate.setInputType(InputType.TYPE_NULL);
         endDate.requestFocus();
+
         Calendar endCalendar = Calendar.getInstance();
         datePickerDialogEnd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -98,6 +189,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
                 String mExplanation = requestExplanation.getText().toString();
                 String mEndDate = endDate.getText().toString();
                 String mStartDate = startDate.getText().toString();
+
                 Intent data = getIntent();
                 // customerId retrieved
                 int customerId = data.getIntExtra("customerId",-1);
@@ -164,7 +256,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
                     explanationBoolean=false;
                 }
                 Date today=new Date();
-                long mintime=today.getTime()+2*24*60*60*1000;
+                long mintime=today.getTime()+1*24*60*60*1000;
                 Date sMin=new Date(mintime);
                 long maxtime=today.getTime()+14*24*60*60*1000;
                 Date sMax=new Date(maxtime);

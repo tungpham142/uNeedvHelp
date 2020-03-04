@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:background="#FFFFFF"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_request_title"
+        android:text="Title"
+        android:textColor="#4bb6d6"
+        android:textSize="20dp">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_category"
+        android:text="Category"
+        android:textSize="18dp">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_request_by"
+        android:text="Request By"
+        android:textColor="#b30000"
+        android:textSize="18dp">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_description"
+        android:text="Short Description"
+        android:textSize="16dp"
+        android:textStyle="italic">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_date"
+        android:text="02-03-2020        02-10-2020"
+        android:textSize="16dp">
+    </TextView>
+
+
+</LinearLayout>

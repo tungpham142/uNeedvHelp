@@ -29,6 +29,8 @@
         <activity android:name=".VendorLoginActivity" />
         <activity android:name=".VendorRegistrationForm2Activity" />
         <activity android:name=".CustomerRequestActivity"/>
+        <activity android:name=".TemporaryAddRequestActivity"/>
+        <activity android:name=".VendorRequestListActivity"/>
     </application>
 
 </manifest>

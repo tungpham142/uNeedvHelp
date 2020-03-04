@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uneedvhelp.model.Customer;
+
 public class CustomerLoginActivity extends AppCompatActivity {
     private EditText mName;
     private EditText mPassword;
@@ -69,8 +71,9 @@ public class CustomerLoginActivity extends AppCompatActivity {
                 if(customerDb != null && customerDb.getPassword().equals(password)){
                     Toast.makeText(CustomerLoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(),CustomerSignInActivity.class);
-                    Log.w(TAG,"This is the value of customer: "+customerDb.customerId);
-                    i.putExtra("customerId",customerDb.customerId);
+                    Log.w(TAG,"This is the value of customer: "+customerDb.getCustomerId());
+
+                    i.putExtra("customerId",customerDb.getCustomerId());
                     startActivity(i);
 
                 }

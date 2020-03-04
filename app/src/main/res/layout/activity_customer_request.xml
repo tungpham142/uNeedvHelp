@@ -107,6 +107,56 @@
             android:layout_height="wrap_content"
             android:background="@color/buttonColor"
             android:text="Submit Request"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Request"
+            android:id="@+id/add_request_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appliance"
+            android:id="@+id/view_appliance_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electrical"
+            android:id="@+id/view_electrical_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plumbing"
+            android:id="@+id/view_plumbing_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home Cleaning"
+            android:id="@+id/view_home_cleaning_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tutoring"
+            android:id="@+id/view_tutoring_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Packaging"
+            android:id="@+id/view_packaging_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Computer Repair"
+            android:id="@+id/view_computer_repair_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home Repair and Painting"
+            android:id="@+id/view_home_repair_btn"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pest Control"
+            android:id="@+id/view_pest_control_btn"></Button>
 
 
 

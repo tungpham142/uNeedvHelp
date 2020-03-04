@@ -1,5 +1,7 @@
 package com.example.uneedvhelp;
 
+import android.widget.Button;
+
 public class CustomerRequest {
     int id;
     String endDate;
@@ -7,6 +9,8 @@ public class CustomerRequest {
     String title;
     String description;
     int customerId;
+    String firstName;
+    String lastName;
 
     public int getId() {
         return id;
@@ -22,6 +26,7 @@ public class CustomerRequest {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
+
 
 
     public String getEndDate() {
@@ -47,10 +52,17 @@ public class CustomerRequest {
     }
     public String getDescription(){
         return description;
-
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     public String getServiceCategory(){
         return category;
@@ -59,4 +71,13 @@ public class CustomerRequest {
     public void setServiceCategory(String category){
         this.category=category;
     }
+
+    public String getName(){
+        return firstName + " " + lastName;
+    }
+
+    public String getDate(){
+        return startDate + "        " + endDate;
+    }
+
 }
