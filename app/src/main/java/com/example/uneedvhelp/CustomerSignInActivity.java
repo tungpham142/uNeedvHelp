@@ -17,7 +17,7 @@ public class CustomerSignInActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signin);
 
-        mLogout =  findViewById(R.id.logout);
+        mLogout =  findViewById(R.id.btn_logout);
         mSignin = findViewById(R.id.btn_customer_request);
         mLogout.setOnClickListener(this);
         mSignin.setOnClickListener(this);
@@ -28,16 +28,16 @@ public class CustomerSignInActivity extends AppCompatActivity implements View.On
         switch (v.getId()){
             case R.id.btn_logout:
             {
-                Intent i = new Intent(CustomerSignInActivity.this,CustomerRegistrationActivity.class);
+                Intent i = new Intent(CustomerSignInActivity.this,HomePageActivity.class);
                 startActivity(i);
                 break;
             }
             case R.id.btn_customer_request:
             {
                 Intent data = getIntent();
-                int customerId = data.getIntExtra("customerId",-1);
+                int customerId = data.getIntExtra("customerId",1);
 
-                Intent i = new Intent(CustomerSignInActivity.this,CustomerRequestActivity.class);
+                Intent i = new Intent(CustomerSignInActivity.this,CustomerCategoryButtons.class);
                 i.putExtra("customerId",customerId);
                 startActivity(i);
                 break;

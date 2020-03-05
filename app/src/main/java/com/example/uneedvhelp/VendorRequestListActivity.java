@@ -3,6 +3,7 @@ package com.example.uneedvhelp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,7 @@ public class VendorRequestListActivity extends AppCompatActivity {
 
         lvCustomerRequest = findViewById(R.id.lv_vendor_request);
         db = new DatabaseHandler(this);
-
+        Log.w("category:====",category.trim());
         mRequestList  = db.getListCustomerRequestByCategory(category);
         adapter = new ListRequestAdapter(this, mRequestList);
         lvCustomerRequest.setAdapter(adapter);

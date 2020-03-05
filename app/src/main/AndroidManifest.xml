@@ -31,6 +31,10 @@
         <activity android:name=".CustomerRequestActivity"/>
         <activity android:name=".TemporaryAddRequestActivity"/>
         <activity android:name=".VendorRequestListActivity"/>
+        <activity android:name=".VendorCategoryButtons"/>
+        <activity android:name=".CustomerCategoryButtons"/>
+
+
     </application>
 
 </manifest>

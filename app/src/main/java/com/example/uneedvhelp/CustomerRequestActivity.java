@@ -46,7 +46,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         setContentView(R.layout.activity_customer_request);
-        mApplianceBtn = findViewById(R.id.view_appliance_btn);
+        /*mApplianceBtn = findViewById(R.id.view_appliance_btn);
         mElectricalBtn = findViewById(R.id.view_electrical_btn);
         mPlumbingBtn = findViewById(R.id.view_plumbing_btn);
         mHomeCleaningBtn = findViewById(R.id.view_home_cleaning_btn);
@@ -56,9 +56,9 @@ public class CustomerRequestActivity extends AppCompatActivity {
         mHomeRepairBtn = findViewById(R.id.view_home_repair_btn);
         mPestControlBtn = findViewById(R.id.view_pest_control_btn);
         mAddRequestBtn = findViewById(R.id.add_request_btn);
-        /*
+
         BUTTONS FOR TESTING
-         */
+
         mApplianceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +131,7 @@ public class CustomerRequestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
+
          END BUTTONS FOR TESTING
          */
 
@@ -192,14 +192,15 @@ public class CustomerRequestActivity extends AppCompatActivity {
 
                 Intent data = getIntent();
                 // customerId retrieved
-                int customerId = data.getIntExtra("customerId",-1);
+                int customerId = data.getIntExtra("customerId",1);
                 Log.println(Log.ERROR,TAG,"customerId:"+customerId+"\n mEndDate:"+mEndDate+"\n mExplanation: "+mExplanation);
 
                 // TODO: Verify these and set errors depending on whether or not they are valid
 
                 // TODO: Integrate this value with Mit/Gef
+                String category = getIntent().getStringExtra("category");
 
-                String temp_Category="Plumbing";
+                String temp_Category=category;
                 // TODO:Add Validations here
                 Date oStartDate = new Date();
                 Date oEndDate = new Date();

@@ -29,7 +29,7 @@ public class TemporaryAddRequestActivity  extends AppCompatActivity {
         mCategory = findViewById(R.id.category);
         db = new DatabaseHandler(this);
 
-        mApplianceBtn = findViewById(R.id.view_appliance_btn);
+        /*mApplianceBtn = findViewById(R.id.view_appliance_btn);
         mElectricalBtn = findViewById(R.id.view_electrical_btn);
         mPlumbingBtn = findViewById(R.id.view_plumbing_btn);
         mHomeCleaningBtn = findViewById(R.id.view_home_cleaning_btn);
@@ -140,7 +140,7 @@ public class TemporaryAddRequestActivity  extends AppCompatActivity {
                     return;
                 }
             }
-        });
+        });*/
     }
 }
 

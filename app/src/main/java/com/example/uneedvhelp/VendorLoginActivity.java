@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uneedvhelp.model.Customer;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,26 +45,26 @@ public class VendorLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String email_id = email.getText().toString();
+                String email_id = email.getText().toString();
                 if(email_id.equals("")){
                     email.setError("Please type email");
                 }
-                final String pwd = password.getText().toString();
+                String pwd = password.getText().toString();
                 if(pwd.equals("")){
                     password.setError("Please type password");
 
                 }
 
 
+                VendorRegistrationDataModel vendor = db.getVendorByEmail(email_id,pwd);
+
+
+                        String email = vendor.getEmail();
+                        String pass = vendor.getPassword();
 
 
 
-                        String email = dataModel.getEmail();
-                        String pass = dataModel.getPassword();
-
-
-
-                        if(email_id.equals(email)&& pwd.equals(pass)) {
+                        if(email_id.equals(email)&& pwd.equals(pass)&&!email_id.equals("")&&!pwd.equals("")) {
                             Intent intent = new Intent(VendorLoginActivity.this, VendorSignedInActivity.class);
                             startActivity(intent);
                         }

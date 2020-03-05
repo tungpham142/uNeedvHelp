@@ -229,7 +229,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(sql, new String[]{email});
 
         if (cursor.getCount() <= 0)
-                return null;
+            return null;
 
         cursor.moveToFirst();
 
@@ -243,6 +243,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.close();
         return customer;
+    }
+    public VendorRegistrationDataModel getVendorByEmail(String email,String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "SELECT * FROM VENDOR WHERE EMAIL = ? AND PASSWORD = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{email,password});
+
+        if (cursor.getCount() <= 0)
+            return null;
+
+        cursor.moveToFirst();
+
+        VendorRegistrationDataModel vendor = new VendorRegistrationDataModel();
+        vendor.setPassword(cursor.getString(cursor.getColumnIndex("PASSWORD")));
+        vendor.setFirstName(cursor.getString(cursor.getColumnIndex("FIRST_NAME")));
+        vendor.setLastName(cursor.getString(cursor.getColumnIndex("LAST_NAME")));
+        vendor.setMobile(cursor.getString(cursor.getColumnIndex("MOBILE")));
+        vendor.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
+        vendor.setId(cursor.getString(cursor.getColumnIndex("ID")));
+
+
+        db.close();
+        return vendor;
     }
 
     public List<CustomerRequest> getListCustomerRequest(){

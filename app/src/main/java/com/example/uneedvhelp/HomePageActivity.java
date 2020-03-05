@@ -41,7 +41,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void openVendorActivity() {
-        Intent intent = new Intent(this, TemporaryAddRequestActivity.class);
+        Intent intent = new Intent(this, VendorHomeActivity.class);
         startActivity(intent);
     }
 

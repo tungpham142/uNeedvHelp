@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/categoryPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1EFF1">
+
+        <ImageButton
+            android:id="@+id/applianceCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="114dp"
+            android:background="#3F51B5"
+            android:contentDescription="Appliance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+        <TextView
+            android:id="@+id/applianceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:text="Appliance"
+            app:layout_constraintStart_toEndOf="@+id/electricalText"
+            app:layout_constraintTop_toBottomOf="@+id/applianceCat" />
+
+        <ImageButton
+            android:id="@+id/electricalCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="112dp"
+            android:background="#E91E63"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_slideshow" />
+
+        <TextView
+            android:id="@+id/electricalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:text="Electrical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/electricalCat" />
+
+        <ImageButton
+            android:id="@+id/plumbingCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:background="#9C27B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_agenda" />
+
+        <TextView
+            android:id="@+id/plumbingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Plumbing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plumbingCat" />
+
+        <ImageButton
+            android:id="@+id/tutoringCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="122dp"
+            android:background="#00BCD4"
+            app:layout_constraintStart_toEndOf="@+id/cleanCat"
+            app:layout_constraintTop_toBottomOf="@+id/applianceText"
+            app:srcCompat="@android:drawable/ic_menu_agenda" />
+
+        <ImageButton
+            android:id="@+id/packagingCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginLeft="61dp"
+            android:layout_marginTop="127dp"
+            android:background="#4CAF50"
+            app:layout_constraintStart_toEndOf="@+id/tutoringCat"
+            app:layout_constraintTop_toBottomOf="@+id/plumbingText"
+            app:srcCompat="@android:drawable/ic_menu_compass" />
+
+        <ImageButton
+            android:id="@+id/computerRepairCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="91dp"
+            android:background="#FFEB3B"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeCleaningText"
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
+        <ImageButton
+            android:id="@+id/homeRepairAndPaintingCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="128dp"
+            android:background="#FFC107"
+            app:layout_constraintStart_toEndOf="@+id/computerRepairCat"
+            app:layout_constraintTop_toBottomOf="@+id/tutoringCat"
+            app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
+
+        <ImageButton
+            android:id="@+id/pestControlCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginLeft="67dp"
+            android:layout_marginTop="125dp"
+            android:background="#CDDC39"
+            app:layout_constraintStart_toEndOf="@+id/homeRepairAndPaintingCat"
+            app:layout_constraintTop_toBottomOf="@+id/packagingCat"
+            app:srcCompat="@android:drawable/ic_menu_today" />
+
+        <TextView
+            android:id="@+id/homeCleaningText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="12dp"
+            android:text="Cleaning"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cleanCat" />
+
+        <TextView
+            android:id="@+id/tutoringText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="12dp"
+            android:text="Tutoring"
+            app:layout_constraintStart_toEndOf="@+id/homeCleaningText"
+            app:layout_constraintTop_toBottomOf="@+id/tutoringCat" />
+
+        <TextView
+            android:id="@+id/packagingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="78dp"
+            android:layout_marginTop="10dp"
+            android:text="Packaging"
+            app:layout_constraintStart_toEndOf="@+id/tutoringText"
+            app:layout_constraintTop_toBottomOf="@+id/packagingCat" />
+
+        <TextView
+            android:id="@+id/computerRepairText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="11dp"
+            android:text="PC Repair"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/computerRepairCat" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="47dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginTop="7dp"
+            android:text="RepairAndPainting"
+            app:layout_constraintStart_toEndOf="@+id/computerRepairText"
+            app:layout_constraintTop_toBottomOf="@+id/homeRepairAndPaintingCat" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="4dp"
+            android:text="Pest Control"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/pestControlCat" />
+
+        <ImageButton
+            android:id="@+id/cleanCat"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="122dp"
+            android:background="#FF5722"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/electricalText"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
